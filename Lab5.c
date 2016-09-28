@@ -22,19 +22,24 @@ int maxValue(int* data, int count);
 //}
 int main(int argc, char *argv[])
 {
+	//if Lab5 is only arguement
 	if(argc==1)
 	{
 		printf("Usage for help:\t\tLab5\t-h\n");
 		return 1;
 	}
-	//go through input arguments
+	//define variables and flags
 		int c=1;
 		int inputFile,renameLength;
 		double offsetVal,scaleVal;
 		int nn=0,oo=0,ss=0,SS=0,CC=0,NN=0,rr=0,hh=0;
 		char** rename;
+	//go through input arguments
 		while(c<argc)
 		{
+			/*checks the next arguement for file # and 
+			sets nn flag if  # is there and bumps count
+			so value isn't seen as an invalid option*/
 			if(strcmp(argv[c],"-n")==0)
 			{
 				if(c+1>=argc)
@@ -65,6 +70,9 @@ int main(int argc, char *argv[])
 					
 				}
 			}
+			/*checks the next arguement for offset value and 
+			sets oo flag if  # is there and bumps count
+			so value isn't seen as an invalid option*/
 			else if(strcmp(argv[c],"-o")==0)
 			{
 				if(c+1>=argc)
@@ -85,6 +93,9 @@ int main(int argc, char *argv[])
 					}
 				}
 			}
+			/*checks the next arguement for scale value and 
+			sets ss flag if  # is there and bumps count
+			so value isn't seen as an invalid option*/
 			else if(strcmp(argv[c],"-s")==0)
 			{
 				if(c+1>=argc)
@@ -105,12 +116,16 @@ int main(int argc, char *argv[])
 					}
 				}
 			}
+			//checks if argument are there and sets flag accordingly
 			else if(strcmp(argv[c],"-S")==0)
 				SS++;
 			else if(strcmp(argv[c],"-C")==0)
 				CC++;
 			else if(strcmp(argv[c],"-N")==0)
 				NN++;
+			/*checks the next arguement for scale value and 
+			sets ss flag if  # is there and bumps count
+			so value isn't seen as an invalid option*/
 			else if(strcmp(argv[c],"-r")==0)
 			{
 				if(c+1>=argc)
@@ -125,6 +140,7 @@ int main(int argc, char *argv[])
 					c++;
 				}
 			}
+			//checks for argument, displays help, and exits
 			else if(strcmp(argv[c],"-h")==0)
 			{
 				printf("Program can be run with the following options:\n\n\t");
@@ -138,18 +154,22 @@ int main(int argc, char *argv[])
 				printf("-h:\tHelp\n\n");
 				return 1;
 			}
+			//other options are considered invalid
 			else
 			{
 				printf("\nOption %s is not valid",argv[c]);
 			}
+			//bump count to next arguement
 			c++;
 		}
+	//file number necessary to continue so terminate if it wasn't found	
 	if(nn==0)
 	{
 		printf("\nInvalid input: File number not included\n");
 		printf("Usage for help:\t\tLab5\t-h\n");
 		return 1;
 	}
+	//something to do needed to do or terminate
 	if((rr+oo+ss+CC+NN)<1)
 	{
 		printf("\nInvalid input: No tasks to perform\n");
@@ -163,8 +183,7 @@ int main(int argc, char *argv[])
 			sprintf(filename,"Raw_data_0%d.txt",inputFile);
 		else
 			sprintf(filename,"Raw_data_%d.txt",inputFile);
-	//}
-	
+	//}	
 	//read data and store integers in array
 	//{
 		int Count, Max;
